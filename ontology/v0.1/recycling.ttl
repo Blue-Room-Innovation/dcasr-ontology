@@ -1,0 +1,84 @@
+@prefix bri-recycling: <https://blue-room-innovation.github.io/dcasr-ontology/ontology/v0.1/recycling.ttl#> .
+@prefix untp-core: <https://test.uncefact.org/vocabulary/untp/core/0/> .
+@prefix schema: <http://schema.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+############################
+# Ontologia
+############################
+
+bri-recycling:RecyclingOntology
+  a owl:Ontology ;
+  rdfs:label "BRI Recycling Ontology"@en ;
+  rdfs:comment "Minimal extensions for recycling and waste management registries"@en .
+
+############################
+# Classes
+############################
+
+bri-recycling:Recycler
+  a owl:Class ;
+  rdfs:subClassOf schema:Organization ;
+  rdfs:label "Recycler"@en ;
+  rdfs:comment "An organization that processes waste materials for recycling"@en .
+
+############################
+# Properties
+############################
+
+bri-recycling:managerCode
+  a owl:DatatypeProperty ;
+  rdfs:domain bri-recycling:Recycler ;
+  rdfs:range xsd:string ;
+  rdfs:label "Waste manager code"@en ;
+  rdfs:comment "Regional waste manager registration code"@en .
+
+bri-recycling:nimaCode
+  a owl:DatatypeProperty ;
+  rdfs:domain bri-recycling:Recycler ;
+  rdfs:range xsd:string ;
+  rdfs:label "NIMA code"@en ;
+  rdfs:comment "Spanish environmental registration number (NIMA)"@en .
+
+bri-recycling:correspondeceAddress
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf schema:streetAddress ;
+  rdfs:domain bri-recycling:Recycler ;
+  rdfs:range xsd:string ;
+  rdfs:label "Correspondence street address"@en ;
+  rdfs:comment "Street address used for postal correspondence when different from the physical address"@en .
+
+bri-recycling:correspondeceAddressLocality
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf schema:addressLocality ;
+  rdfs:domain bri-recycling:Recycler ;
+  rdfs:range xsd:string ;
+  rdfs:label "Correspondence locality"@en ;
+  rdfs:comment "City or locality of the correspondence postal address"@en .
+
+bri-recycling:correspondecePostalCode
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf schema:postalCode ;
+  rdfs:domain bri-recycling:Recycler ;
+  rdfs:range xsd:string ;
+  rdfs:label "Correspondence postal code"@en ;
+  rdfs:comment "Postal code of the correspondence address"@en .
+
+bri-recycling:adaptedToRD1102015
+  a owl:DatatypeProperty ;
+  rdfs:domain bri-recycling:Recycler ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf untp-core:conformance ;
+  rdfs:label "Adapted to RD 110/2015 (WEEE)"@en ;
+  rdfs:comment "Indicates whether the recycler complies with Spanish Royal Decree 110/2015 on WEEE"@en .
+
+bri-recycling:wasteTreatmentActivity
+  a owl:DatatypeProperty ;
+  rdfs:domain bri-recycling:Recycler ;
+  rdfs:range xsd:string ;
+  rdfs:label "Waste treatment activity description"@en ;
+  rdfs:comment "Free-text description of waste treatment activities"@en .
+

@@ -1,0 +1,30 @@
+@prefix : <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/iso3166-iAlpha2.ttl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+@base <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/iso3166-iAlpha2.ttl> .
+
+<https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/iso3166-iAlpha2.ttl> a owl:Ontology ;
+    rdfs:label "ISO 3166-1 Alpha-2 Country Code List"@en ;
+    owl:versionInfo "0.1" ;
+    rdfs:comment "A SKOS reference vocabulary defining the two-letter country codes established by the ISO 3166-1 Alpha-2 standard. It provides a globally recognized identifier for sovereign states and territories, ensuring consistent representation of a country or flag state across international data exchanges."@en ;
+    dcterms:source <https://www.iso.org/obp/ui/#search> ;
+    dcterms:license <https://www.iso.org/copyright.html> .
+
+#################################################################
+#    Concept Scheme
+#################################################################
+
+:ISO3166Alpha2Scheme a skos:ConceptScheme ;
+    skos:prefLabel "ISO 3166-1 Alpha-2 Country Codes"@en ;
+    skos:definition "Standardized two-letter country codes established by ISO 3166-1 Alpha-2."@en ;
+    skos:scopeNote "This scheme references the official ISO publication and does not reproduce the codes locally. Implementations should resolve codes directly from the ISO OBP or an authorized registry."@en ;
+    dcterms:source <https://www.iso.org/obp/ui/#search> .
+
+#################################################################
+#    Ontology linkage
+#################################################################
+
+:ISO3166Alpha2Scheme skos:note "Referenced by properties such as :flag within the Digital MARPOL Waste Passport ontology, indicating the flag state of a ship using standardized ISO 3166-1 Alpha-2 codes."@en .

@@ -1,0 +1,43 @@
+@prefix dwp: <https://blue-room-innovation.github.io/dcasr-ontology/ontology/v0.1/digitalWastePassport.ttl#> .
+@prefix unece: <https://test.uncefact.org/vocabulary/untp/core/0/> .
+@prefix unece-dpp: <https://test.uncefact.org/vocabulary/untp/dpp/0/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ex: <https://example.org/resource/> .
+
+# Valid example of DigitalWastePassport and WastePassport
+# Represents a passport for electronic waste from PCB boards for recycling.
+
+ex:dwPassport1 a dwp:DigitalWastePassport ;
+  dwp:credentialSubject ex:wastePassport1 ;
+  dct:issued "2025-11-01T09:00:00Z"^^xsd:dateTime ;
+  dct:publisher ex:BlueRoomInnovation .
+
+ex:wastePassport1 a dwp:WastePassport ;
+  dwp:waste ex:waste1 .
+
+# Waste (concrete residue)
+ex:waste1 a dwp:Waste ;
+  unece:name "waste1" ;
+  unece:productName "PCB Scrap Lot 2024-11" ;
+  unece:productDescription "Printed circuit board scrap collected from end-of-life consumer electronics." ;
+  unece:hasBatchIdentifier "BATCH-PCB-2025-001" ;
+  unece:originCountry <https://vocabulary.uncefact.org/CountryId#DE> ;
+  unece:productionDate "2025-10-25"^^xsd:date ;
+  unece:weightQuantity "1250"^^xsd:decimal ;
+  unece:declaredUnit <https://vocabulary.uncefact.org/UnitMeasureCode#KGM> .
+
+# Additional hypothetical composition information (materials)
+ex:waste1 unece:hasConstituent [
+    a unece:MaterialConstituent ;
+    unece:materialType <https://vocabulary.uncefact.org/MaterialType#Copper> ;
+    unece:massFraction "0.28"^^xsd:decimal
+  ], [
+    a unece:MaterialConstituent ;
+    unece:materialType <https://vocabulary.uncefact.org/MaterialType#Plastic> ;
+    unece:massFraction "0.35"^^xsd:decimal
+  ] .
+
+# (Optional) Reference to an environmental reporting standard
+ex:wastePassport1 unece:reportingStandard ex:stdEnv1 .
+ex:stdEnv1 a unece:Standard ; unece:standardName "WEEE Reuse/Recycling Directive" .

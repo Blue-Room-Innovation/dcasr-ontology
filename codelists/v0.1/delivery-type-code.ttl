@@ -1,0 +1,47 @@
+@prefix : <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/delivery-type-code.ttl#> .
+
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+@base <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/delivery-type-code.ttl> .
+
+<https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/delivery-type-code.ttl> a owl:Ontology ;
+    rdfs:label "Delivery Type Code List"@en ;
+    owl:versionInfo "0.1" ;
+    rdfs:comment "A SKOS vocabulary that specifies the type of delivery for ship-generated waste, as defined by a local codelist. The delivery type represents the manner in which the waste is delivered, collected, or processed at the port or reception facility."@en .
+
+#################################################################
+#    Concept Scheme
+#################################################################
+
+:DeliveryTypeCodeScheme a skos:ConceptScheme ;
+    skos:prefLabel "Delivery Type Code"@en ;
+    skos:definition "A code that specifies the type of delivery for ship-generated waste, as defined by a local codelist."@en ;
+    rdfs:comment "Defines delivery types for MARPOL waste, indicating how waste is collected, recycled, or discharged at port reception facilities."@en .
+
+#################################################################
+#    Concepts
+#################################################################
+
+:ZTO a skos:Concept ;
+    skos:inScheme :DeliveryTypeCodeScheme ;
+    skos:prefLabel "ZTO"@en ;
+    skos:definition "Example of a local code for a specific waste delivery type (to be defined in the local codelist)."@en .
+
+:REC a skos:Concept ;
+    skos:inScheme :DeliveryTypeCodeScheme ;
+    skos:prefLabel "REC"@en ;
+    skos:definition "Recycled waste."@en .
+
+:DIS a skos:Concept ;
+    skos:inScheme :DeliveryTypeCodeScheme ;
+    skos:prefLabel "DIS"@en ;
+    skos:definition "Discharged waste."@en .
+
+#################################################################
+#    Ontology linkage
+#################################################################
+
+:DeliveryTypeCodeScheme skos:note "Linked to the property :deliveryType in the Digital MARPOL Waste Passport ontology, constraining allowed values to this controlled vocabulary."@en .

@@ -1,0 +1,341 @@
+{
+  "@version": 1.1,
+  "@protected": true,
+  "@context": {
+    "bri-shape": "https://blue-room-innovation.github.io/dcasr-ontology/shapes/v0.1/dpp-unece.shacl.ttl#",
+    "dwp": "https://blue-room-innovation.github.io/dcasr-ontology/ontology/v0.1/digitalWastePassport.ttl#",
+    "dwp-shape": "https://blue-room-innovation.github.io/dcasr-ontology/shapes/v0.1/digital-waste-passport.shacl.ttl#",
+    "geojson": "https://purl.org/geojson/vocab#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema1": "http://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "untp": "https://test.uncefact.org/vocabulary/untp/dpp/0/",
+    "untp-core": "https://test.uncefact.org/vocabulary/untp/core/0/",
+    "vc": "https://www.w3.org/ns/credentials/v2#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Address": "untp-core:Address",
+    "Characteristics": "untp-core:Characteristics",
+    "CircularityPerformance": "untp-core:CircularityPerformance",
+    "Claim": "untp-core:Claim",
+    "Classification": "untp-core:Classification",
+    "CredentialIssuer": "untp-core:CredentialIssuer",
+    "Criterion": "untp-core:Criterion",
+    "DigitalProductPassport": "untp:DigitalProductPassport",
+    "DigitalWastePassport": "dwp:DigitalWastePassport",
+    "Dimension": "untp-core:Dimension",
+    "EmissionsPerformance": "untp-core:EmissionsPerformance",
+    "Facility": "untp-core:Facility",
+    "IdentifierScheme": "untp-core:IdentifierScheme",
+    "Link": "untp-core:Link",
+    "Location": "untp-core:Location",
+    "Material": "untp-core:Material",
+    "Measure": "untp-core:Measure",
+    "Metric": "untp-core:Metric",
+    "Party": "untp-core:Party",
+    "Product": "untp-core:Product",
+    "ProductPassport": "untp:ProductPassport",
+    "Regulation": "untp-core:Regulation",
+    "SecureLink": "untp-core:SecureLink",
+    "Standard": "untp-core:Standard",
+    "TraceabilityPerformance": "untp:TraceabilityPerformance",
+    "Waste": "dwp:Waste",
+    "WastePassport": "dwp:WastePassport",
+    "accuracy": {
+      "@id": "untp-core:accuracy",
+      "@type": "xsd:double"
+    },
+    "address": "untp-core:address",
+    "addressCountry": {
+      "@id": "untp-core:addressCountry",
+      "@type": "untp-core:countryCode"
+    },
+    "addressLocality": {
+      "@id": "untp-core:addressLocality",
+      "@type": "xsd:string"
+    },
+    "addressRegion": {
+      "@id": "untp-core:addressRegion",
+      "@type": "xsd:string"
+    },
+    "administeredBy": "untp-core:administeredBy",
+    "assessmentCriteria": "untp-core:assessmentCriteria",
+    "assessmentDate": {
+      "@id": "untp-core:assessmentDate",
+      "@type": "xsd:string"
+    },
+    "batchNumber": {
+      "@id": "untp-core:batchNumber",
+      "@type": "xsd:string"
+    },
+    "carbonFootprint": {
+      "@id": "untp-core:carbonFootprint",
+      "@type": "xsd:double"
+    },
+    "category": "untp-core:category",
+    "characteristics": "untp-core:characteristics",
+    "circularityScorecard": "untp:circularityScorecard",
+    "code": {
+      "@id": "untp-core:code",
+      "@type": "xsd:string"
+    },
+    "conformance": {
+      "@id": "untp-core:conformance",
+      "@type": "xsd:boolean"
+    },
+    "conformityClaim": "untp:conformityClaim",
+    "conformityEvidence": "untp-core:conformityEvidence",
+    "conformityTopic": {
+      "@id": "untp-core:conformityTopic",
+      "@type": "untp-core:conformityTopicCode"
+    },
+    "countryOfOperation": {
+      "@id": "untp-core:countryOfOperation",
+      "@type": "untp-core:countryCode"
+    },
+    "countryOfProduction": {
+      "@id": "untp-core:countryOfProduction",
+      "@type": "untp-core:countryCode"
+    },
+    "credentialSubject": "vc:credentialSubject",
+    "declaredUnit": {
+      "@id": "untp-core:declaredUnit",
+      "@type": "untp-core:unitOfMeasure"
+    },
+    "declaredValue": "untp-core:declaredValue",
+    "description": {
+      "@id": "untp-core:description",
+      "@type": "xsd:string"
+    },
+    "dimensions": "untp-core:dimensions",
+    "dueDiligenceDeclaration": "untp:dueDiligenceDeclaration",
+    "effectiveDate": {
+      "@id": "untp-core:effectiveDate",
+      "@type": "xsd:string"
+    },
+    "emissionsScorecard": "untp:emissionsScorecard",
+    "encryptionMethod": {
+      "@id": "untp-core:encryptionMethod",
+      "@type": "untp-core:encryptionMethodCode"
+    },
+    "facilityAlsoKnownAs": "untp-core:facilityAlsoKnownAs",
+    "furtherInformation": "untp-core:furtherInformation",
+    "geoBoundary": {
+      "@id": "untp-core:geoBoundary",
+      "@type": "geojson:appendix-A.3"
+    },
+    "geoLocation": {
+      "@id": "untp-core:geoLocation",
+      "@type": "geojson:appendix-A.1"
+    },
+    "granularityLevel": {
+      "@id": "untp:granularityLevel",
+      "@type": "untp:granularityCode"
+    },
+    "hashDigest": {
+      "@id": "untp-core:hashDigest",
+      "@type": "xsd:string"
+    },
+    "hashMethod": {
+      "@id": "untp-core:hashMethod",
+      "@type": "untp-core:hashMethodCode"
+    },
+    "hazardous": {
+      "@id": "untp-core:hazardous",
+      "@type": "xsd:boolean"
+    },
+    "height": "untp-core:height",
+    "id": {
+      "@id": "untp-core:id",
+      "@type": "xsd:string"
+    },
+    "idScheme": "untp-core:idScheme",
+    "industryCategory": "untp-core:industryCategory",
+    "issueDate": {
+      "@id": "untp-core:issueDate",
+      "@type": "xsd:string"
+    },
+    "issuer": "vc:issuer",
+    "issuerAlsoKnownAs": "untp-core:issuerAlsoKnownAs",
+    "issuingParty": "untp-core:issuingParty",
+    "jurisdictionCountry": {
+      "@id": "untp-core:jurisdictionCountry",
+      "@type": "untp-core:countryCode"
+    },
+    "length": "untp-core:length",
+    "linkName": {
+      "@id": "untp-core:linkName",
+      "@type": "xsd:string"
+    },
+    "linkType": {
+      "@id": "untp-core:linkType",
+      "@type": "xsd:string"
+    },
+    "linkURL": {
+      "@id": "untp-core:linkURL",
+      "@type": "xsd:string"
+    },
+    "locationInformation": "untp-core:locationInformation",
+    "mass": "untp-core:mass",
+    "massFraction": {
+      "@id": "untp-core:massFraction",
+      "@type": "xsd:double"
+    },
+    "materialCircularityIndicator": {
+      "@id": "untp-core:materialCircularityIndicator",
+      "@type": "xsd:double"
+    },
+    "materialSafetyInformation": "untp-core:materialSafetyInformation",
+    "materialType": "untp-core:materialType",
+    "materialsProvenance": "untp:materialsProvenance",
+    "metricName": {
+      "@id": "untp-core:metricName",
+      "@type": "xsd:string"
+    },
+    "metricValue": "untp-core:metricValue",
+    "name": {
+      "@id": "untp-core:name",
+      "@type": "xsd:string"
+    },
+    "operatedByParty": "untp-core:operatedByParty",
+    "operationalScope": {
+      "@id": "untp-core:operationalScope",
+      "@type": "untp-core:operationalScopeCode"
+    },
+    "organisationWebsite": {
+      "@id": "untp-core:organisationWebsite",
+      "@type": "xsd:string"
+    },
+    "originCountry": {
+      "@id": "untp-core:originCountry",
+      "@type": "untp-core:countryCode"
+    },
+    "partyAlsoKnownAs": "untp-core:partyAlsoKnownAs",
+    "performanceLevel": {
+      "@id": "untp-core:performanceLevel",
+      "@type": "xsd:string"
+    },
+    "pickupFacility": "dwp:pickupFacility",
+    "plusCode": {
+      "@id": "untp-core:plusCode",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "untp-core:postalCode",
+      "@type": "xsd:string"
+    },
+    "primarySourcedRatio": {
+      "@id": "untp-core:primarySourcedRatio",
+      "@type": "xsd:double"
+    },
+    "processCategory": "untp-core:processCategory",
+    "producedAtFacility": "untp-core:producedAtFacility",
+    "producedByParty": "untp-core:producedByParty",
+    "product": "untp:product",
+    "productCategory": "untp-core:productCategory",
+    "productImage": "untp-core:productImage",
+    "productionDate": {
+      "@id": "untp-core:productionDate",
+      "@type": "xsd:string"
+    },
+    "recyclableContent": {
+      "@id": "untp-core:recyclableContent",
+      "@type": "xsd:double"
+    },
+    "recycledContent": {
+      "@id": "untp-core:recycledContent",
+      "@type": "xsd:double"
+    },
+    "recycledMassFraction": {
+      "@id": "untp-core:recycledMassFraction",
+      "@type": "xsd:double"
+    },
+    "recyclingInformation": "untp-core:recyclingInformation",
+    "referenceRegulation": "untp-core:referenceRegulation",
+    "referenceStandard": "untp-core:referenceStandard",
+    "registeredId": {
+      "@id": "untp-core:registeredId",
+      "@type": "xsd:string"
+    },
+    "registrationCountry": {
+      "@id": "untp-core:registrationCountry",
+      "@type": "untp-core:countryCode"
+    },
+    "repairInformation": "untp-core:repairInformation",
+    "reportingStandard": "untp-core:reportingStandard",
+    "schemeID": {
+      "@id": "untp-core:schemeID",
+      "@type": "xsd:string"
+    },
+    "schemeName": {
+      "@id": "untp-core:schemeName",
+      "@type": "xsd:string"
+    },
+    "score": {
+      "@id": "untp-core:score",
+      "@type": "xsd:string"
+    },
+    "serialNumber": {
+      "@id": "untp-core:serialNumber",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "untp-core:status",
+      "@type": "untp-core:statusCode"
+    },
+    "streetAddress": {
+      "@id": "untp-core:streetAddress",
+      "@type": "xsd:string"
+    },
+    "subCriterion": "untp-core:subCriterion",
+    "symbol": {
+      "@id": "untp-core:symbol",
+      "@type": "xsd:string"
+    },
+    "tag": {
+      "@id": "untp-core:tag",
+      "@type": "xsd:string"
+    },
+    "thresholdValue": "untp-core:thresholdValue",
+    "traceabilityEvent": "untp:traceabilityEvent",
+    "traceabilityInformation": "untp:traceabilityInformation",
+    "unit": {
+      "@id": "untp-core:unit",
+      "@type": "untp-core:unitOfMeasure"
+    },
+    "utilityFactor": {
+      "@id": "untp-core:utilityFactor",
+      "@type": "xsd:double"
+    },
+    "validFrom": {
+      "@id": "untp-core:validFrom",
+      "@type": "schema1:DateTime"
+    },
+    "validUntil": {
+      "@id": "untp-core:validUntil",
+      "@type": "schema1:DateTime"
+    },
+    "value": {
+      "@id": "untp-core:value",
+      "@type": "xsd:double"
+    },
+    "valueChainProcess": {
+      "@id": "untp:valueChainProcess",
+      "@type": "xsd:string"
+    },
+    "verifiedRatio": {
+      "@id": "untp:verifiedRatio",
+      "@type": "xsd:double"
+    },
+    "volume": "untp-core:volume",
+    "waste": "dwp:waste",
+    "wasteAgentParty": "dwp:wasteAgentParty",
+    "weight": "untp-core:weight",
+    "weightQuantity": {
+      "@id": "untp-core:weightQuantity",
+      "@type": "xsd:decimal"
+    },
+    "width": "untp-core:width"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "@blueroominnovation/ontology-contracts",
+  "version": "0.1.0",
+  "description": "Generated JSON Schemas, TypeScript types, and AJV validators for BRI ontology artifacts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./current": {
+      "types": "./dist/current/index.d.ts",
+      "default": "./dist/current/index.js"
+    },
+    "./validator": {
+      "types": "./dist/validator.d.ts",
+      "default": "./dist/validator.js"
+    },
+    "./v0.1": {
+      "types": "./dist/v0.1/index.d.ts",
+      "default": "./dist/v0.1/index.js"
+    },
+    "./schemas/current/*": "./schemas/current/*",
+    "./schemas/v0.1/*": "./schemas/v0.1/*"
+  },
+  "files": [
+    "dist/",
+    "schemas/"
+  ],
+  "scripts": {
+    "clean": "node ./scripts/clean.mjs",
+    "sync:artifacts": "node ./scripts/sync-artifacts.mjs",
+    "build": "npm run sync:artifacts && tsc -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

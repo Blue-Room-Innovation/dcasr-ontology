@@ -1,0 +1,45 @@
+{
+  "name": "dataspace-ontology-tools",
+  "version": "0.1.0",
+  "description": "Auto-generation tools for DataSpace ontology artifacts",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "cli": "node docker/docker.js run cli",
+    "help": "node docker/docker.js run help",
+    "validate:owl": "node docker/docker.js run validate:owl",
+    "validate:owl:quiet": "node docker/docker.js run validate:owl:quiet",
+    "validate:owl:with-codelists": "node docker/docker.js run validate:owl:with-codelists",
+    "validate:shacl": "node docker/docker.js run validate:shacl",
+    "validate:shacl:list": "node docker/docker.js run validate:shacl:list",
+    "generate:types": "node docker/docker.js run generate:types",
+    "generate:types:verbose": "node docker/docker.js run generate:types:verbose",
+    "generate:wiki": "node docker/docker.js run generate:wiki",
+    "generate:wiki:verbose": "node docker/docker.js run generate:wiki:verbose",
+    "generate:build-index": "node docker/docker.js run generate:build-index",
+    "generate:json-schema": "node docker/docker.js run generate:json-schema",
+    "convert:context": "node docker/docker.js run convert:context",
+    "convert:ts": "node docker/docker.js run convert:ts",
+    "convert:ts:list": "node docker/docker.js run cli convert ts --list",
+    "build": "npm run validate:owl:with-codelists && npm run generate:types && npm run convert:context && npm run generate:wiki && npm run generate:build-index && npm run validate:shacl && npm run contracts:build ",
+    "test": "npm run contracts:test",
+    "release:version": "node docker/docker.js run release:version",
+    "release:all": "node docker/docker.js run release:all",
+    "config:show": "node docker/docker.js run config:show",
+    "docker:build": "node docker/docker.js build",
+    "docker:shell": "node docker/docker.js shell",
+    "contracts:build": "npm -w packages/ontology-contracts run build",
+    "contracts:test": "npm -w examples/consumer-node-ts run test"
+  },
+  "dependencies": {
+    "json-schema-to-typescript": "^14.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.8.0"
+  }
+}

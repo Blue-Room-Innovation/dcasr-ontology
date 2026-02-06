@@ -1,0 +1,20 @@
+{
+  "name": "ontology-contracts-consumer-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "test": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "@blueroominnovation/ontology-contracts": "file:../../packages/ontology-contracts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

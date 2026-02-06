@@ -1,0 +1,51 @@
+@prefix : <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/discharge-means-code.ttl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+@base <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/discharge-means-code.ttl> .
+
+<https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/discharge-means-code.ttl> a owl:Ontology ;
+    rdfs:label "Discharge Means Code List"@en ;
+    owl:versionInfo "0.1" ;
+    rdfs:comment "A SKOS vocabulary that specifies the means or method of discharge for a particular residue or waste material under MARPOL regulations."@en .
+
+#################################################################
+#    Concept Scheme
+#################################################################
+
+:DischargeMeansCodeScheme a skos:ConceptScheme ;
+    skos:prefLabel "Discharge Means Code"@en ;
+    skos:definition "A code that specifies the means or method of discharge for a particular residue or waste material."@en ;
+    rdfs:comment "Defines the possible discharge methods under MARPOL waste handling processes."@en .
+
+#################################################################
+#    Concepts
+#################################################################
+
+:ZTE a skos:Concept ;
+    skos:inScheme :DischargeMeansCodeScheme ;
+    skos:prefLabel "ZTE"@en ;
+    skos:definition "Discharge to a port reception facility."@en .
+
+:ZTD a skos:Concept ;
+    skos:inScheme :DischargeMeansCodeScheme ;
+    skos:prefLabel "ZTD"@en ;
+    skos:definition "Discharge to a designated waste treatment system."@en .
+
+:ZTC a skos:Concept ;
+    skos:inScheme :DischargeMeansCodeScheme ;
+    skos:prefLabel "ZTC"@en ;
+    skos:definition "Direct discharge to sea (per MARPOL regulations)."@en .
+
+:ZTB a skos:Concept ;
+    skos:inScheme :DischargeMeansCodeScheme ;
+    skos:prefLabel "ZTB"@en ;
+    skos:definition "Discharge to a designated waste collection area."@en .
+
+#################################################################
+#    Ontology linkage
+#################################################################
+
+:DischargeMeansCodeScheme skos:note "Linked to the property :dischargeMeans in the Digital MARPOL Waste Passport ontology, constraining allowed values to this controlled vocabulary."@en .

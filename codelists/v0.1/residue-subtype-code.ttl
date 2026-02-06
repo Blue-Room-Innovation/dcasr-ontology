@@ -1,0 +1,55 @@
+@prefix : <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/residue-type-code.ttl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@base <https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/residue-type-code.ttl> .
+
+<https://blue-room-innovation.github.io/dcasr-ontology/codelists/v0.1/residue-type-code.ttl> a owl:Ontology ;
+    rdfs:label "Residue Subtype Code List"@en ;
+    owl:versionInfo "0.1" ;
+    rdfs:comment "A SKOS vocabulary that specifies the subtype of residue, providing a more granular classification of the waste material within the MARPOL waste management framework."@en ;
+    dcterms:creator "CircularPass Ontology Team" ;
+    dcterms:source "Digital MARPOL Waste Passport Code Table" ;
+    dcterms:issued "2025-11-10"^^xsd:date .
+
+#################################################################
+#    Concept Scheme
+#################################################################
+
+:ResidueSubtypeCodeScheme a skos:ConceptScheme ;
+    skos:prefLabel "Residue Subtype Code"@en ;
+    skos:definition "A code that specifies the subtype of residue, providing a more granular classification of the waste material."@en ;
+    rdfs:comment "Controlled vocabulary defining subtypes of residues generated on ships, used to refine MARPOL waste categorization."@en .
+
+#################################################################
+#    Concepts
+#################################################################
+
+:ZTH01 a skos:Concept ;
+    skos:inScheme :ResidueSubtypeCodeScheme ;
+    skos:prefLabel "ZTH01"@en ;
+    skos:definition "Hazardous liquid waste from fuel systems."@en .
+
+:ZTE02 a skos:Concept ;
+    skos:inScheme :ResidueSubtypeCodeScheme ;
+    skos:prefLabel "ZTE02"@en ;
+    skos:definition "Non-hazardous solid waste from kitchen operations."@en .
+
+:ZTR03 a skos:Concept ;
+    skos:inScheme :ResidueSubtypeCodeScheme ;
+    skos:prefLabel "ZTR03"@en ;
+    skos:definition "Sludge from ballast water treatment systems."@en .
+
+:ZTW04 a skos:Concept ;
+    skos:inScheme :ResidueSubtypeCodeScheme ;
+    skos:prefLabel "ZTW04"@en ;
+    skos:definition "Wastewater from sewage systems."@en .
+
+#################################################################
+#    Ontology linkage
+#################################################################
+
+:ResidueSubtypeCodeScheme skos:note "Linked to the property :subtypeCode in the Digital MARPOL Waste Passport ontology, constraining allowed values to this controlled vocabulary."@en .

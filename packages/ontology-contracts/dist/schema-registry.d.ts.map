@@ -1,0 +1,1 @@
+{"version":3,"file":"schema-registry.d.ts","sourceRoot":"","sources":["../src/schema-registry.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AAE3D,eAAO,MAAM,iBAAiB,EAAE,MAAM,CAAC,gBAAgB,EAAE,GAAG,CAI3D,CAAC"}

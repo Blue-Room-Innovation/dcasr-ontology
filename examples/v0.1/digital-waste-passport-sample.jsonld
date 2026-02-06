@@ -1,0 +1,275 @@
+{
+  "@context": "../../build/v0.1/digitalWastePassport.context.jsonld",
+  "@id": "https://example.org/resource/dwp1",
+  "@type": [
+    "DigitalWastePassport"
+  ],
+  "id": "urn:uuid:0c5ef74b-a32e-4344-8659-4b142e37ee0d",
+  "issuer": {
+    "@type": [
+      "CredentialIssuer"
+    ],
+    "id": "https://dev.gs1resolver.blueroominnovation.com/417/0400070000014",
+    "name": "KERRY"
+  },
+  "validFrom": "2026-01-13T07:46:22.096Z",
+  "credentialSubject": {
+    "@type": [
+      "WastePassport"
+    ],
+    "waste": {
+      "@type": [
+        "Waste"
+      ],
+      "@id": "did:web:dev-api.circularport.eu:id:01:0400000000121:10:dzCrdHYMyzn16Y4",
+      "name": "MARPOL 501",
+      "registeredId": "",
+      "serialNumber": "",
+      "batchNumber": "dzCrdHYMyzn16Y4",
+      "description": "",
+      "productionDate": "1705929175000",
+      "countryOfProduction": "AD",
+      "idScheme": {
+        "@type": [
+          "IdentifierScheme"
+        ],
+        "id": "ex",
+        "name": "in"
+      },
+      "productImage": {
+        "@type": [
+          "Link"
+        ],
+        "linkURL": "example",
+        "linkName": "test",
+        "linkType": ""
+      },
+      "productCategory": [
+        {
+          "@type": [
+            "Classification"
+          ],
+          "id": "https://emsa.europa.eu/emswe-mig/Codes/cd1.htm",
+          "name": "A. Plastics",
+          "code": "501",
+          "schemeID": "https://www.imo.org/en/about/conventions/pages/international-convention-for-the-prevention-of-pollution-from-ships-(marpol).aspx",
+          "schemeName": "International Convention for the Prevention of Pollution from Ships (MARPOL)"
+        }
+      ],
+      "furtherInformation": {
+        "@type": [
+          "Link"
+        ],
+        "linkURL": "example",
+        "linkName": "test",
+        "linkType": ""
+      },
+      "producedByParty": {
+        "id": "https://dev.gs1resolver.blueroominnovation.com/417/0400070000014",
+        "name": "KERRY",
+        "registeredId": "9243447"
+      },
+      "producedAtFacility": {
+        "@type": [
+          "Facility"
+        ],
+        "id": "https://dev.gs1resolver.blueroominnovation.com/414/0400070000014",
+        "name": "KERRY",
+        "registeredId": "9243447"
+      },
+      "dimensions": {
+        "@type": [
+          "Dimension"
+        ],
+        "volume": {
+          "value": 1.0,
+          "unit": "m3"
+        }
+      },
+      "characteristics": {},
+      "pickupFacility": {
+        "@type": [
+          "Facility"
+        ],
+        "id": "https://dev.gs1resolver.blueroominnovation.com/414/0400000000060",
+        "name": "PALMA",
+        "registeredId": "ESPMI"
+      },
+      "wasteAgentParty": {
+        "id": "https://dev.gs1resolver.blueroominnovation.com/417/0400010000012",
+        "name": "ADALMO",
+        "registeredId": "0400010000012"
+      }
+    },
+    "granularityLevel": "batch",
+    "dueDiligenceDeclaration": {
+      "@type": [
+        "Link"
+      ],
+      "linkURL": "example",
+      "linkName": "test",
+      "linkType": ""
+    },
+    "materialsProvenance": [],
+    "conformityClaim": [
+      {
+        "@type": [
+          "Claim",
+          "Declaration"
+        ],
+        "@id": "https://cc-registry.circularpass.org/claim/2af7e50e-abd2-483f-a275-226fa7757b31",
+        "assessmentDate": "2026-01-13T07:46:21.014Z",
+        "conformance": true,
+        "conformityTopic": "environment.emissions",
+        "description": "Environmental Product Declaration calculated using EPD. Operational scope: CradleToGate",
+        "referenceStandard": {
+          "@type": [
+            "Standard"
+          ],
+          "@id": "https://environdec.com/epd",
+          "name": "ISO 14025 - Environmental Product Declaration",
+          "issuingParty": {
+            "id": "https://environdec.com",
+            "name": "EPD International"
+          },
+          "issueDate": "2006-07-01"
+        },
+        "assessmentCriteria": [
+          {
+            "@type": [
+              "Criterion"
+            ],
+            "@id": "https://eplca.jrc.ec.europa.eu/LCDN/EF3.1Method",
+            "name": "EF 3.1 Method (adapted)",
+            "description": "European Environmental Footprint Method version 3.1",
+            "conformityTopic": "environment.emissions",
+            "status": "active"
+          }
+        ],
+        "declaredValue": [],
+        "conformityEvidence": {
+          "@type": [
+            "SecureLink"
+          ],
+          "linkURL": "https://cc-registry.circularpass.org/credential/2af7e50e-abd2-483f-a275-226fa7757b31",
+          "linkName": "EPD Conformity Credential",
+          "linkType": "https://test.uncefact.org/vocabulary/linkTypes/dcc"
+        }
+      }
+    ],
+    "circularityScorecard": {},
+    "emissionsScorecard": {
+      "declaredUnit": "KGM",
+      "operationalScope": "CradleToGate",
+      "primarySourcedRatio": 0.0,
+      "reportingStandard": {
+        "@type": [
+          "Standard"
+        ],
+        "id": "https://ghgprotocol.org/standards/product-standard",
+        "name": "GHG Protocol Product Standard",
+        "issuingParty": {
+          "id": "https://ghgprotocol.org",
+          "name": "GHG Protocol"
+        }
+      }
+    },
+    "traceabilityInformation": [
+      {
+        "@type": [
+          "TraceabilityPerformance"
+        ],
+        "valueChainProcess": "Commissioning",
+        "verifiedRatio": 1,
+        "traceabilityEvent": [
+          {
+            "@type": [
+              "SecureLink"
+            ],
+            "linkURL": "example",
+            "linkName": "Commissioning Process Event",
+            "linkType": "https://test.uncefact.org/vocabulary/linkTypes/dte",
+            "hashDigest": "ni:///sha-256;522b3f5e6341fe2c1ee033c516f0b3b3c28da4566d7066255059a01742736926",
+            "hashMethod": "SHA-256"
+          }
+        ]
+      },
+      {
+        "@type": [
+          "TraceabilityPerformance"
+        ],
+        "valueChainProcess": "Assigning",
+        "verifiedRatio": 1.0,
+        "traceabilityEvent": [
+          {
+            "@type": [
+              "SecureLink"
+            ],
+            "linkURL": "https://dev-api.circularport.eu/api/v1/events/ni%3A%2F%2F%2Fsha-256%3B28e586262e75964ac7b77adea9e7d8537dec6ee4fa27a91b994bf42918f0e7d0%3Fver%3DCBV2.0",
+            "linkName": "Assigning Process Event",
+            "linkType": "https://test.uncefact.org/vocabulary/linkTypes/dte",
+            "hashDigest": "ni:///sha-256;0aa2e098fe8d0ecb6b907977809e1dc52c8324b9e7097a006507b080e0273b44",
+            "hashMethod": "SHA-256"
+          }
+        ]
+      },
+      {
+        "@type": [
+          "TraceabilityPerformance"
+        ],
+        "valueChainProcess": "Accepting",
+        "verifiedRatio": 1.0,
+        "traceabilityEvent": [
+          {
+            "@type": [
+              "SecureLink"
+            ],
+            "linkURL": "https://dev-api.circularport.eu/api/v1/events/ni%3A%2F%2F%2Fsha-256%3B3f50221d20bca76c0622b8581420ac6464ea4465c0826c14eee2a24f528b5a5d%3Fver%3DCBV2.0",
+            "linkName": "Accepting Process Event",
+            "linkType": "https://test.uncefact.org/vocabulary/linkTypes/dte",
+            "hashDigest": "ni:///sha-256;79f2654c63d7d4cbf433773ef8867bca5d4076a84617f65f4e626d07696e0141",
+            "hashMethod": "SHA-256"
+          }
+        ]
+      },
+      {
+        "@type": [
+          "TraceabilityPerformance"
+        ],
+        "valueChainProcess": "Departing",
+        "verifiedRatio": 1.0,
+        "traceabilityEvent": [
+          {
+            "@type": [
+              "SecureLink"
+            ],
+            "linkURL": "https://dev-api.circularport.eu/api/v1/events/ni%3A%2F%2F%2Fsha-256%3Be529380f14a6a079509a07ee02735b6528bbe75cc7fe38ca3e4f1f4166bd31a6%3Fver%3DCBV2.0",
+            "linkName": "Departing Process Event",
+            "linkType": "https://test.uncefact.org/vocabulary/linkTypes/dte",
+            "hashDigest": "ni:///sha-256;54fe58046b4bbcc09345eeda4dc8431f262309a3664285d98829c64326783078",
+            "hashMethod": "SHA-256"
+          }
+        ]
+      },
+      {
+        "@type": [
+          "TraceabilityPerformance"
+        ],
+        "valueChainProcess": "Arriving",
+        "verifiedRatio": 1.0,
+        "traceabilityEvent": [
+          {
+            "@type": [
+              "SecureLinks"
+            ],
+            "linkURL": "https://dev-api.circularport.eu/api/v1/events/ni%3A%2F%2F%2Fsha-256%3Bf03cb451216417555467512e5b71c31a4a638ecaf40e3483ffdc10adae4fef04%3Fver%3DCBV2.0",
+            "linkName": "Arriving Process Event",
+            "linkType": "https://test.uncefact.org/vocabulary/linkTypes/dte",
+            "hashDigest": "ni:///sha-256;86b7174c002844ee591c4ad92fb0d9b8c4c5a270a9e9f5fa6f89a9c87d845a45",
+            "hashMethod": "SHA-256"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "@version": 1.1,
+  "@protected": true,
+  "@context": {
+    "bri-recycling": "https://blue-room-innovation.github.io/dcasr-ontology/ontology/v0.1/recycling.ttl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "schema": "https://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Recycler": "bri-recycling:Recycler",
+    "adaptedToRD1102015": {
+      "@id": "bri-recycling:adaptedToRD1102015",
+      "@type": "xsd:boolean"
+    },
+    "addressLocality": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "correspondeceAddress": {
+      "@id": "bri-recycling:correspondeceAddress",
+      "@type": "xsd:string"
+    },
+    "correspondeceAddressLocality": {
+      "@id": "bri-recycling:correspondeceAddressLocality",
+      "@type": "xsd:string"
+    },
+    "correspondecePostalCode": {
+      "@id": "bri-recycling:correspondecePostalCode",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "faxNumber": {
+      "@id": "schema:faxNumber",
+      "@type": "xsd:string"
+    },
+    "managerCode": {
+      "@id": "bri-recycling:managerCode",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "nimaCode": {
+      "@id": "bri-recycling:nimaCode",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "streetAddress": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "telephone": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    "url": "schema:url",
+    "wasteTreatmentActivity": {
+      "@id": "bri-recycling:wasteTreatmentActivity",
+      "@type": "xsd:string"
+    }
+  }
+}

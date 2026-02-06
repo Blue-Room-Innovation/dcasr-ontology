@@ -1,0 +1,200 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix schema: <https://schema.org/> .
+@prefix bri-recycling: <https://blue-room-innovation.github.io/dcasr-ontology/ontology/v0.1/recycling.ttl#> .
+@prefix untp-core: <https://test.uncefact.org/vocabulary/untp/core/0/> .
+
+
+bri-recycling:RecyclingOrganisationShape
+  a sh:NodeShape ;
+  sh:targetClass bri-recycling:Recycler ;
+
+  # Manager code
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path bri-recycling:managerCode ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # NIMA code
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path bri-recycling:nimaCode ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Manager name
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path schema:name ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Physical address
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path schema:streetAddress ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Municipality
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path schema:addressLocality ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Postal code
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path schema:postalCode ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Correspondence address
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path bri-recycling:correspondeceAddress ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Correspondence municipality
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path bri-recycling:correspondeceAddressLocality ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Correspondence postal code
+  # Mandatory, non-empty string
+  sh:property [
+    sh:path bri-recycling:correspondecePostalCode ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:minLength 1 ;
+  ] ;
+
+  # Telephone
+  # Optional, phone-like string pattern
+  sh:property [
+    sh:path schema:telephone ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:pattern "^[0-9 +()]{6,}$" ;
+  ] ;
+
+  # Fax
+  # Optional, phone-like string pattern
+  sh:property [
+    sh:path schema:faxNumber ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:pattern "^[0-9 +()]{6,}$" ;
+  ] ;
+
+  # Email
+  # Optional, email format
+  sh:property [
+    sh:path schema:email ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:pattern "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$" ;
+  ] ;
+
+  # Web
+  # Optional, must be an IRI (website)
+  sh:property [
+    sh:path schema:url ;
+    sh:nodeKind sh:IRI ;
+    sh:maxCount 1 ;
+  ] ;
+
+  # Location
+  # Latitude and longitude: both present or both absent
+  sh:or (
+    # No latitude and no longitude
+    [
+      sh:not [
+        sh:property [
+          sh:path schema:latitude ;
+          sh:minCount 1 ;
+        ] ;
+      ] ;
+      sh:not [
+        sh:property [
+          sh:path schema:longitude ;
+          sh:minCount 1 ;
+        ] ;
+      ] ;
+    ]
+    [
+      # Latitude present and valid
+      sh:property [
+        sh:path schema:latitude ;
+        sh:datatype xsd:double ;
+        sh:minInclusive -90 ;
+        sh:maxInclusive 90 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+      ] ;
+      # Longitude present and valid
+      sh:property [
+        sh:path schema:longitude ;
+        sh:datatype xsd:double ;
+        sh:minInclusive -180 ;
+        sh:maxInclusive 180 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+      ] ;
+    ]
+  ) ;
+
+  # Adapted to RD 110/2015 on WEEE
+  # Optional, boolean only (true/false)
+  sh:property [
+    sh:path bri-recycling:adaptedToRD1102015 ;
+    sh:datatype xsd:boolean ;
+    sh:in ( true false ) ;
+    sh:maxCount 1 ;
+  ] ;
+
+  # Activity
+  # Optional, free-text description
+  sh:property [
+    sh:path bri-recycling:wasteTreatmentActivity ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+  ] ;
+
+  # Ignore rdf:type when checking closed shape
+  sh:ignoredProperties ( rdf:type ) ;
+
+  # No properties outside this shape are allowed
+  sh:closed true .

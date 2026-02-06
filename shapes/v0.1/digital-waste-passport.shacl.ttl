@@ -1,0 +1,308 @@
+@prefix dwp-shape: <https://blue-room-innovation.github.io/dcasr-ontology/shapes/v0.1/digital-waste-passport.shacl.ttl#> .
+@prefix bri-shape: <https://blue-room-innovation.github.io/dcasr-ontology/shapes/v0.1/dpp-unece.shacl.ttl#> .
+@prefix dwp: <https://blue-room-innovation.github.io/dcasr-ontology/ontology/v0.1/digitalWastePassport.ttl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix untp-core: <https://test.uncefact.org/vocabulary/untp/core/0/> .
+@prefix unece: <https://test.uncefact.org/vocabulary/untp/core/0/> .
+@prefix untp: <https://test.uncefact.org/vocabulary/untp/dpp/0/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix vc: <https://www.w3.org/ns/credentials/v2#> .
+@prefix schema: <http://schema.org/> .
+
+<> a owl:Ontology ;
+   owl:imports <./dpp-unece.shacl.ttl>.
+
+dwp-shape:DigitalWastePassportShape
+  a sh:NodeShape ;
+  sh:targetClass dwp:DigitalWastePassport ;
+  rdfs:label "Digital Waste Passport"@en ;
+  rdfs:comment "A Digital Waste Passport that contains waste-specific information."@en ;
+  sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
+
+  # Propietats heretades de DigitalProductPassport
+sh:property [
+    sh:path untp-core:id ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+
+  sh:property [
+    sh:path vc:issuer ;
+    sh:class untp-core:CredentialIssuer ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:node bri-shape:CredentialIssuerShape ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:validFrom ;
+    sh:datatype schema:DateTime ;
+    sh:maxCount 1 ;
+    sh:pattern "^[-]?\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Z]|([+-]\\d{2}:\\d{2}))$" ;
+    sh:description "The data from which this version is valid."@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:validUntil ;
+    sh:datatype schema:DateTime ;
+    sh:maxCount 1 ;
+    sh:pattern "^[-]?\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?([Z]|([+-]\\d{2}:\\d{2}))$" ;
+    sh:description "The date and time until which this version remains valid."@en ;
+  ] ;
+
+  # Propietat especialitzada per WastePassport
+  sh:property [
+    sh:path vc:credentialSubject ;
+    sh:class dwp:WastePassport ;
+    sh:node dwp-shape:WastePassportShape ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+dwp-shape:WastePassportShape
+  a sh:NodeShape ;
+  sh:targetClass dwp:WastePassport ;
+  rdfs:label "Waste Passport"@en ;
+  rdfs:comment "A product claim specialized for waste products."@en ;
+  sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
+
+# Propietats heretades de ProductPassport
+  sh:property [
+    sh:path untp:circularityScorecard ;
+    sh:node bri-shape:CircularityPerformanceShape ;
+    sh:maxCount 1 ;
+    sh:description "A circularity performance scorecard"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp:conformityClaim ;
+    sh:node bri-shape:ClaimShape ;
+    sh:description "An array of claim objects ..."@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp:dueDiligenceDeclaration ;
+    sh:node bri-shape:LinkShape ;
+    sh:maxCount 1 ;
+    sh:description "The due diligence declaration that ..."@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp:emissionsScorecard ;
+    sh:node bri-shape:EmissionsPerformanceShape ;
+    sh:maxCount 1 ;
+    sh:description "An emissions performance scorecard"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp:granularityLevel ;
+    sh:datatype untp:granularityCode ;
+    sh:in ( "item"^^untp:granularityCode "batch"^^untp:granularityCode "model"^^untp:granularityCode ) ;
+    sh:maxCount 1 ;
+    sh:description "Code to indicate the granularity ..."@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:id ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "An id is not required ..."@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp:materialsProvenance ;
+    sh:node bri-shape:MaterialShape ;
+    sh:description "An array of Provenance objects ..."@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp:traceabilityInformation ;
+    sh:node bri-shape:TraceabilityPerformanceShape ;
+    sh:description "An array of traceability events ..."@en ;
+  ] ;
+
+  # Propietat especialitzada per waste
+  sh:property [
+    sh:path dwp:waste ;
+    sh:class dwp:Waste ;
+    sh:node dwp-shape:WasteShape ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:description "The waste being documented in this passport"@en ;
+  ] .
+
+dwp-shape:WasteShape
+  a sh:NodeShape ;
+  sh:targetClass dwp:Waste ;
+  rdfs:label "Waste"@en ;
+  rdfs:comment "Shape for waste products."@en ;
+  sh:closed true ;
+  sh:ignoredProperties ( rdf:type ) ;
+
+  sh:property [
+    sh:path untp-core:batchNumber ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "Identifier of the specific production batch"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:characteristics ;
+    sh:node bri-shape:CharacteristicsShape ;
+    sh:maxCount 1 ;
+    sh:description "Extension point for waste specific characteristics"@en ;
+  ] ;
+  
+  sh:property [
+    sh:path untp-core:countryOfProduction ;
+    sh:datatype untp-core:countryCode ;
+    sh:maxCount 1 ;
+    sh:description "The country in which this ..."@en ;
+    sh:in (
+        "AD"^^untp-core:countryCode "AE"^^untp-core:countryCode "AF"^^untp-core:countryCode "AG"^^untp-core:countryCode "AI"^^untp-core:countryCode "AL"^^untp-core:countryCode "AM"^^untp-core:countryCode "AO"^^untp-core:countryCode "AQ"^^untp-core:countryCode "AR"^^untp-core:countryCode 
+        "AS"^^untp-core:countryCode "AT"^^untp-core:countryCode "AU"^^untp-core:countryCode "AW"^^untp-core:countryCode "AX"^^untp-core:countryCode "AZ"^^untp-core:countryCode "BA"^^untp-core:countryCode "BB"^^untp-core:countryCode "BD"^^untp-core:countryCode "BE"^^untp-core:countryCode 
+        "BF"^^untp-core:countryCode "BG"^^untp-core:countryCode "BH"^^untp-core:countryCode "BI"^^untp-core:countryCode "BJ"^^untp-core:countryCode "BL"^^untp-core:countryCode "BM"^^untp-core:countryCode "BN"^^untp-core:countryCode "BO"^^untp-core:countryCode "BQ"^^untp-core:countryCode 
+        "BR"^^untp-core:countryCode "BS"^^untp-core:countryCode "BT"^^untp-core:countryCode "BV"^^untp-core:countryCode "BW"^^untp-core:countryCode "BY"^^untp-core:countryCode "BZ"^^untp-core:countryCode "CA"^^untp-core:countryCode "CC"^^untp-core:countryCode "CD"^^untp-core:countryCode 
+        "CF"^^untp-core:countryCode "CG"^^untp-core:countryCode "CH"^^untp-core:countryCode "CI"^^untp-core:countryCode "CK"^^untp-core:countryCode "CL"^^untp-core:countryCode "CM"^^untp-core:countryCode "CN"^^untp-core:countryCode "CO"^^untp-core:countryCode "CR"^^untp-core:countryCode 
+        "CU"^^untp-core:countryCode "CV"^^untp-core:countryCode "CW"^^untp-core:countryCode "CX"^^untp-core:countryCode "CY"^^untp-core:countryCode "CZ"^^untp-core:countryCode "DE"^^untp-core:countryCode "DJ"^^untp-core:countryCode "DK"^^untp-core:countryCode "DM"^^untp-core:countryCode 
+        "DO"^^untp-core:countryCode "DZ"^^untp-core:countryCode "EC"^^untp-core:countryCode "EE"^^untp-core:countryCode "EG"^^untp-core:countryCode "EH"^^untp-core:countryCode "ER"^^untp-core:countryCode "ES"^^untp-core:countryCode "ET"^^untp-core:countryCode "FI"^^untp-core:countryCode 
+        "FJ"^^untp-core:countryCode "FK"^^untp-core:countryCode "FM"^^untp-core:countryCode "FO"^^untp-core:countryCode "FR"^^untp-core:countryCode "GA"^^untp-core:countryCode "GB"^^untp-core:countryCode "GD"^^untp-core:countryCode "GE"^^untp-core:countryCode "GF"^^untp-core:countryCode 
+        "GG"^^untp-core:countryCode "GH"^^untp-core:countryCode "GI"^^untp-core:countryCode "GL"^^untp-core:countryCode "GM"^^untp-core:countryCode "GN"^^untp-core:countryCode "GP"^^untp-core:countryCode "GQ"^^untp-core:countryCode "GR"^^untp-core:countryCode "GS"^^untp-core:countryCode 
+        "GT"^^untp-core:countryCode "GU"^^untp-core:countryCode "GW"^^untp-core:countryCode "GY"^^untp-core:countryCode "HK"^^untp-core:countryCode "HM"^^untp-core:countryCode "HN"^^untp-core:countryCode "HR"^^untp-core:countryCode "HT"^^untp-core:countryCode "HU"^^untp-core:countryCode 
+        "ID"^^untp-core:countryCode "IE"^^untp-core:countryCode "IL"^^untp-core:countryCode "IM"^^untp-core:countryCode "IN"^^untp-core:countryCode "IO"^^untp-core:countryCode "IQ"^^untp-core:countryCode "IR"^^untp-core:countryCode "IS"^^untp-core:countryCode "IT"^^untp-core:countryCode 
+        "JE"^^untp-core:countryCode "JM"^^untp-core:countryCode "JO"^^untp-core:countryCode "JP"^^untp-core:countryCode "KE"^^untp-core:countryCode "KG"^^untp-core:countryCode "KH"^^untp-core:countryCode "KI"^^untp-core:countryCode "KM"^^untp-core:countryCode "KN"^^untp-core:countryCode 
+        "KP"^^untp-core:countryCode "KR"^^untp-core:countryCode "KW"^^untp-core:countryCode "KY"^^untp-core:countryCode "KZ"^^untp-core:countryCode "LA"^^untp-core:countryCode "LB"^^untp-core:countryCode "LC"^^untp-core:countryCode "LI"^^untp-core:countryCode "LK"^^untp-core:countryCode 
+        "LR"^^untp-core:countryCode "LS"^^untp-core:countryCode "LT"^^untp-core:countryCode "LU"^^untp-core:countryCode "LV"^^untp-core:countryCode "LY"^^untp-core:countryCode "MA"^^untp-core:countryCode "MC"^^untp-core:countryCode "MD"^^untp-core:countryCode "ME"^^untp-core:countryCode 
+        "MF"^^untp-core:countryCode "MG"^^untp-core:countryCode "MH"^^untp-core:countryCode "MK"^^untp-core:countryCode "ML"^^untp-core:countryCode "MM"^^untp-core:countryCode "MN"^^untp-core:countryCode "MO"^^untp-core:countryCode "MP"^^untp-core:countryCode "MQ"^^untp-core:countryCode 
+        "MR"^^untp-core:countryCode "MS"^^untp-core:countryCode "MT"^^untp-core:countryCode "MU"^^untp-core:countryCode "MV"^^untp-core:countryCode "MW"^^untp-core:countryCode "MX"^^untp-core:countryCode "MY"^^untp-core:countryCode "MZ"^^untp-core:countryCode "NA"^^untp-core:countryCode 
+        "NC"^^untp-core:countryCode "NE"^^untp-core:countryCode "NF"^^untp-core:countryCode "NG"^^untp-core:countryCode "NI"^^untp-core:countryCode "NL"^^untp-core:countryCode "NO"^^untp-core:countryCode "NP"^^untp-core:countryCode "NR"^^untp-core:countryCode "NU"^^untp-core:countryCode 
+        "NZ"^^untp-core:countryCode "OM"^^untp-core:countryCode "PA"^^untp-core:countryCode "PE"^^untp-core:countryCode "PF"^^untp-core:countryCode "PG"^^untp-core:countryCode "PH"^^untp-core:countryCode "PK"^^untp-core:countryCode "PL"^^untp-core:countryCode "PM"^^untp-core:countryCode 
+        "PN"^^untp-core:countryCode "PR"^^untp-core:countryCode "PS"^^untp-core:countryCode "PT"^^untp-core:countryCode "PW"^^untp-core:countryCode "PY"^^untp-core:countryCode "QA"^^untp-core:countryCode "RE"^^untp-core:countryCode "RO"^^untp-core:countryCode "RS"^^untp-core:countryCode 
+        "RU"^^untp-core:countryCode "RW"^^untp-core:countryCode "SA"^^untp-core:countryCode "SB"^^untp-core:countryCode "SC"^^untp-core:countryCode "SD"^^untp-core:countryCode "SE"^^untp-core:countryCode "SG"^^untp-core:countryCode "SH"^^untp-core:countryCode "SI"^^untp-core:countryCode 
+        "SJ"^^untp-core:countryCode "SK"^^untp-core:countryCode "SL"^^untp-core:countryCode "SM"^^untp-core:countryCode "SN"^^untp-core:countryCode "SO"^^untp-core:countryCode "SR"^^untp-core:countryCode "SS"^^untp-core:countryCode "ST"^^untp-core:countryCode "SV"^^untp-core:countryCode 
+        "SX"^^untp-core:countryCode "SY"^^untp-core:countryCode "SZ"^^untp-core:countryCode "TC"^^untp-core:countryCode "TD"^^untp-core:countryCode "TF"^^untp-core:countryCode "TG"^^untp-core:countryCode "TH"^^untp-core:countryCode "TJ"^^untp-core:countryCode "TK"^^untp-core:countryCode 
+        "TL"^^untp-core:countryCode "TM"^^untp-core:countryCode "TN"^^untp-core:countryCode "TO"^^untp-core:countryCode "TR"^^untp-core:countryCode "TT"^^untp-core:countryCode "TV"^^untp-core:countryCode "TW"^^untp-core:countryCode "TZ"^^untp-core:countryCode "UA"^^untp-core:countryCode 
+        "UG"^^untp-core:countryCode "UM"^^untp-core:countryCode "US"^^untp-core:countryCode "UY"^^untp-core:countryCode "UZ"^^untp-core:countryCode "VA"^^untp-core:countryCode "VC"^^untp-core:countryCode "VE"^^untp-core:countryCode "VG"^^untp-core:countryCode "VI"^^untp-core:countryCode 
+        "VN"^^untp-core:countryCode "VU"^^untp-core:countryCode "WF"^^untp-core:countryCode "WS"^^untp-core:countryCode "YE"^^untp-core:countryCode "YT"^^untp-core:countryCode "ZA"^^untp-core:countryCode "ZM"^^untp-core:countryCode "ZW"^^untp-core:countryCode
+    ) ; # extrets de https://vocabulary.uncefact.org/CountryId ;
+  ] ;
+  
+  sh:property [
+    sh:path untp-core:description ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "An optional short description of the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:dimensions ;
+    sh:node bri-shape:DimensionShape ;
+    sh:maxCount 1 ;
+    sh:description "The physical dimensions of the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:furtherInformation ;
+    sh:node bri-shape:LinkShape ;
+    sh:description "A URL pointing to further information"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:id ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "The W3C DID of the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:idScheme ;
+    sh:node bri-shape:IdentifierSchemeShape ;
+    sh:maxCount 1 ;
+    sh:description "The identifier scheme of the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:name ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "Name of the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:producedAtFacility ;
+    sh:node bri-shape:FacilityShape ;
+    sh:maxCount 1 ;
+    sh:description "The Facility where the waste was produced"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:producedByParty ;
+    sh:node bri-shape:PartyShape ;
+    sh:maxCount 1 ;
+    sh:description "The Party entity that produced the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:productCategory ;
+    sh:node bri-shape:ClassificationShape ;
+    sh:description "A code representing the waste category"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:productImage ;
+    sh:node bri-shape:LinkShape ;
+    sh:maxCount 1 ;
+    sh:description "Reference information for product image"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:productionDate ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "The ISO 8601 date on which the waste was produced"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:registeredId ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "The registration number of the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path untp-core:serialNumber ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:description "A number or code representing the serial number"@en ;
+  ] ;
+
+  # Propietat especialitzada per waste
+  sh:property [
+    sh:path unece:weightQuantity ;
+    sh:datatype xsd:decimal ;
+    sh:maxCount 1 ;
+    sh:minExclusive 0 ; 
+    sh:description "Weight of the waste"@en ;
+  ] ;
+
+  sh:property [
+    sh:path dwp:pickupFacility ;
+    sh:node bri-shape:FacilityShape ;
+    sh:maxCount 1 ;
+    sh:description "The Facility where the waste ..."@en ;
+  ] ;
+
+  sh:property [
+    sh:path dwp:wasteAgentParty ;
+    sh:node bri-shape:PartyShape ;
+    sh:maxCount 1 ;
+    sh:description "The Waste Party entity that manufactured ..."@en ;
+  ] .
+  

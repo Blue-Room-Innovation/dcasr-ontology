@@ -1,0 +1,197 @@
+# Ontology Repository Configuration
+# =================================
+# This file contains version numbers and paths for all ontology components.
+# Update this file when creating new versions instead of hardcoding versions in scripts.
+
+# Current Component Versions
+# --------------------------
+ontology_version: "v0.1" # Ontologies
+shapes_version: "v0.1" # SHACL shape definitions
+examples_version: "v0.1" # Example data files
+codelists_version: "v0.1" # Code lists (standardized versioning)
+
+# Build Configuration
+# -------------------
+build_version: "v0.1" # Output directory for generated artifacts
+
+# Component Paths (relative to workspace root)
+# --------------------------------------------
+paths:
+  ontology: "ontology"
+  shapes: "shapes"
+  examples: "examples"
+  codelists: "codelists"
+  build: "build"
+  docs: "docs"
+  scripts: "scripts"
+
+# GitHub Repository Configuration
+# -------------------------------
+repository:
+  owner: "Blue-Room-Innovation"
+  name: "dcasr-ontology"
+  branch: "main"
+  base_url: "https://blue-room-innovation.github.io/dcasr-ontology"
+  pages_url: "https://blue-room-innovation.github.io/dcasr-ontology"
+
+# Ontology Files Configuration
+# ----------------------------
+ontologies:
+  - name: "digitalWastePassport"
+    file: "digitalWastePassport.ttl"
+    display_name: "Digital Waste Passport"
+    description: "Core waste passport ontology"
+
+  - name: "wasteActors"
+    file: "wasteActors.ttl"
+    display_name: "Waste Actors"
+    description: "Waste management actors and roles"
+
+# SHACL Shapes Configuration
+# --------------------------
+shapes:
+  - name: "digitalWastePassport"
+    file: "digital-waste-passport.shacl.ttl"
+    ontology: "digitalWastePassport"
+
+  - name: "wasteActors"
+    file: "waste-actors.shacl.ttl"
+    ontology: "wasteActors"
+
+# Generation Pipeline Configuration
+# ---------------------------------
+generation:
+  # Artifacts to generate (SHACL → JSON Schema → TypeScript)
+  artifacts:
+    - dpp-unece
+    - dwp
+    - recycling
+
+# Validation Configuration
+# ------------------------
+# Define all your validation scenarios here. You can run them by name:
+#   npm run validate:shacl <name>
+#   Example: npm run validate:shacl dwp
+validation:
+  # OWL validation settings
+  owl:
+    reasoner: "HermiT" # Options: HermiT, ELK, none
+    profile: "DL" # Options: DL, OWL2
+    include_codelists: true
+
+  # SHACL validation scenarios
+  # Add as many as you need - they're all accessible via CLI
+  shacl:
+    # Available validation scenarios
+    scenarios:
+      dpp-unece:
+        name: "UNECE DPP"
+        description: "Validates a DPP sample against the UNECE constraints"
+        data: "examples/v0.1/dpp-unece-sample.jsonld"
+        shapes: "shapes/v0.1/dpp-unece.shacl.ttl"
+        format: "human"
+        extras: ""
+
+      dwp:
+        name: "Digital Waste Passport"
+        description: "Validates DWP sample data against DWP shapes"
+        data: "examples/v0.1/digital-waste-passport-sample.jsonld"
+        shapes: "shapes/v0.1/digital-waste-passport.shacl.ttl"
+        format: "human"
+        extras: ""
+
+      recycling:
+        name: "Recycling"
+        description: ""
+        data: "examples/v0.1/recycling.sample.jsonld"
+        shapes: "shapes/v0.1/recycling.shacl.ttl"
+        format: "human"
+        extras: ""
+
+# Conversion Configuration
+# ------------------------
+# Define conversion scenarios for SHACL → JSON Schema → TypeScript
+conversion:
+  # SHACL to JSON Schema conversions
+  shacl_to_json:
+    dpp-unece:
+      name: "UNECE DPP Bootstrap"
+      input: "shapes/v0.1/dpp-unece.shacl.ttl"
+      output: "build/v0.1/dppUnece.schema.json"
+      naming: "local"
+
+    dwp:
+      name: "Digital Waste Passport"
+      input: "shapes/v0.1/digital-waste-passport.shacl.ttl"
+      output: "build/v0.1/digitalWastePassport.schema.json"
+      naming: "local"
+
+    recycling:
+      name: "Recycling"
+      input: "shapes/v0.1/recycling.shacl.ttl"
+      output: "build/v0.1/recycling.schema.json"
+      naming: "local"
+
+  # SHACL to JSON-LD context conversions (baseline contexts)
+  shacl_to_context:
+    dpp-unece:
+      name: "UNECE DPP Bootstrap"
+      input: "shapes/v0.1/dpp-unece.shacl.ttl"
+      output: "build/v0.1/dppUnece.context.jsonld"
+
+    dwp:
+      name: "Digital Waste Passport"
+      input: "shapes/v0.1/digital-waste-passport.shacl.ttl"
+      output: "build/v0.1/digitalWastePassport.context.jsonld"
+
+    recycling:
+      name: "Recycling"
+      input: "shapes/v0.1/recycling.shacl.ttl"
+      output: "build/v0.1/recycling.context.jsonld"
+
+  # JSON Schema to TypeScript conversions
+  json_to_ts:
+    dpp-unece:
+      name: "UNECE DPP Bootstrap"
+      input: "build/v0.1/dppUnece.schema.json"
+      output: "build/v0.1/dppUnece.ts"
+      source: "shapes/v0.1/dpp-unece.shacl.ttl"
+
+    dwp:
+      name: "Digital Waste Passport"
+      input: "build/v0.1/digitalWastePassport.schema.json"
+      output: "build/v0.1/digitalWastePassport.ts"
+      source: "shapes/v0.1/digital-waste-passport.shacl.ttl"
+
+    recycling:
+      name: "Recycling"
+      input: "build/v0.1/recycling.schema.json"
+      output: "build/v0.1/recycling.ts"
+      source: "shapes/v0.1/recycling.shacl.ttl"
+
+# Wiki Documentation Configuration
+# --------------------------------
+wiki:
+  output_dir: "build/{build_version}/wiki"
+  include_codelists: true
+  formats:
+    - markdown
+
+# Release Configuration
+# ---------------------
+release:
+  # Semantic versioning guidelines
+  versioning:
+    major: "Breaking changes (API incompatible)"
+    minor: "New features (backward compatible)"
+    patch: "Bug fixes (backward compatible)"
+
+  # Components that can be released independently
+  independent_components:
+    - codelists
+
+  # Components that should be released together
+  synchronized_components:
+    - ontology
+    - shapes
+    - examples
